@@ -1,7 +1,7 @@
 import { BaseUserService } from "./base-user.service";
 import { BaseUserModel } from "./models";
 export declare class BaseUserController<T = BaseUserModel> {
-    private userService;
+    userService: BaseUserService<T>;
     constructor(userService: BaseUserService<T>);
     private createUser;
 }
