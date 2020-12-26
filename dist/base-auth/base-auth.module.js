@@ -20,7 +20,7 @@ let BaseAuthModule = BaseAuthModule_1 = class BaseAuthModule {
             providers: [
                 base_auth_service_1.BaseAuthService,
                 { provide: "UserService", useClass: userService },
-                { provide: "JwtSecret", useClass: jwtSecret },
+                { provide: "JwtSecret", useValue: jwtSecret },
                 jwt_strategy_1.JwtStrategy,
             ],
             imports: [
