@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc",
-    "postinstall": "npm run build",
-    "prepublish": "npm i && npm run build"
+    "postinstall": "npm i && npm run build",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "ISC",
