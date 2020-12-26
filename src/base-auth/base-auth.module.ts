@@ -16,7 +16,7 @@ export class BaseAuthModule {
       providers: [
         BaseAuthService,
         { provide: "UserService", useClass: userService },
-        { provide: "JwtSecret", useClass: jwtSecret },
+        { provide: "JwtSecret", useValue: jwtSecret },
         JwtStrategy,
       ],
       imports: [
