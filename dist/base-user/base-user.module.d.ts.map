@@ -1,0 +1,1 @@
+{"version":3,"file":"base-user.module.d.ts","sourceRoot":"","sources":["../../src/base-user/base-user.module.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAgB,MAAM,gBAAgB,CAAC;AAI7D,OAAO,EAAE,kBAAkB,EAAE,MAAM,wBAAwB,CAAC;AAE5D,qBACa,cAAc;IACzB,MAAM,CAAC,QAAQ,CACb,cAAc,GAAE,OAAuB,EACvC,UAAU,4BAAqB,EAC/B,kBAAkB,SAAS,GAC1B,aAAa;CAgBjB"}
