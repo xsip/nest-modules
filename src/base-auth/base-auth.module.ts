@@ -3,6 +3,7 @@ import { BaseAuthService } from "./base-auth.service";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./jwt.strategy";
+import { MongooseModule } from "@nestjs/mongoose";
 
 @Module({})
 export class BaseAuthModule {
@@ -20,13 +21,14 @@ export class BaseAuthModule {
         JwtStrategy,
       ],
       imports: [
+        MongooseModule,
         PassportModule,
         JwtModule.register({
           secret: jwtSecret,
           signOptions: { expiresIn },
         }),
       ],
-      exports: [BaseAuthService, JwtStrategy],
+      exports: [BaseAuthService, JwtStrategy, MongooseModule],
     };
   }
 }
