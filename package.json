@@ -14,11 +14,18 @@
   "license": "ISC",
   "dependencies": {
     "@nestjs/common": "^7.6.4",
+    "@nestjs/jwt": "^7.2.0",
     "@nestjs/mongoose": "^7.2.0",
+    "@nestjs/passport": "^7.1.5",
     "@nestjs/swagger": "^4.7.8",
     "bcrypt": "^5.0.0",
     "mongoose": "^5.11.8",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.3"
+  },
+  "devDependencies": {
+    "@types/passport-jwt": "^3.0.3"
   }
 }

@@ -15,11 +15,19 @@ export class BaseUserService<T = BaseUserModel> {
     } as T & Document);
   }
 
+  public async findByEmail(email: string) {
+    try {
+      return await this.userModel.findOne({ email: email } as any);
+    } catch (e) {
+      throw new Error(`Couldn't find user with email "${email}"`);
+    }
+  }
+
   private hashPassword(password: string): string {
     return bcrypt.hashSync(password, 10);
   }
 
-  private comparePassword(password: string, hash: string): boolean {
+  public comparePassword(password: string, hash: string): boolean {
     return bcrypt.compareSync(password, hash);
   }
 }

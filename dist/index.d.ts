@@ -1,3 +1,4 @@
 import * as BaseUser from "./base-user";
-export { BaseUser };
+import * as BaseAuth from "./base-auth";
+export { BaseUser, BaseAuth };
 //# sourceMappingURL=index.d.ts.map

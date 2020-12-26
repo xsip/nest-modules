@@ -43,6 +43,14 @@ let BaseUserService = class BaseUserService {
     async createUser(user) {
         return this.userModel.create(Object.assign(Object.assign({}, user), { password: this.hashPassword(user["password"]) }));
     }
+    async findByEmail(email) {
+        try {
+            return await this.userModel.findOne({ email: email });
+        }
+        catch (e) {
+            throw new Error(`Couldn't find user with email "${email}"`);
+        }
+    }
     hashPassword(password) {
         return bcrypt.hashSync(password, 10);
     }

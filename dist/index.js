@@ -19,7 +19,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseUser = void 0;
+exports.BaseAuth = exports.BaseUser = void 0;
 const BaseUser = __importStar(require("./base-user"));
 exports.BaseUser = BaseUser;
+const BaseAuth = __importStar(require("./base-auth"));
+exports.BaseAuth = BaseAuth;
 //# sourceMappingURL=index.js.map
