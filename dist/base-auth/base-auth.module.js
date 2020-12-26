@@ -13,9 +13,8 @@ const base_auth_service_1 = require("./base-auth.service");
 const jwt_1 = require("@nestjs/jwt");
 const passport_1 = require("@nestjs/passport");
 const jwt_strategy_1 = require("./jwt.strategy");
-const mongoose_1 = require("@nestjs/mongoose");
 let BaseAuthModule = BaseAuthModule_1 = class BaseAuthModule {
-    static register(userService, jwtSecret, expiresIn = "10h") {
+    static register(userService, UserModule, jwtSecret, expiresIn = "10h") {
         return {
             module: BaseAuthModule_1,
             providers: [
@@ -25,14 +24,14 @@ let BaseAuthModule = BaseAuthModule_1 = class BaseAuthModule {
                 jwt_strategy_1.JwtStrategy,
             ],
             imports: [
-                mongoose_1.MongooseModule,
+                UserModule,
                 passport_1.PassportModule,
                 jwt_1.JwtModule.register({
                     secret: jwtSecret,
                     signOptions: { expiresIn },
                 }),
             ],
-            exports: [base_auth_service_1.BaseAuthService, jwt_strategy_1.JwtStrategy, mongoose_1.MongooseModule],
+            exports: [base_auth_service_1.BaseAuthService, jwt_strategy_1.JwtStrategy, UserModule],
         };
     }
 };

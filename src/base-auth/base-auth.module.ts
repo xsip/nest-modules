@@ -3,12 +3,12 @@ import { BaseAuthService } from "./base-auth.service";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { JwtStrategy } from "./jwt.strategy";
-import { MongooseModule } from "@nestjs/mongoose";
 
 @Module({})
 export class BaseAuthModule {
   static register(
     userService: any,
+    UserModule: any,
     jwtSecret: string,
     expiresIn = "10h"
   ): DynamicModule {
@@ -21,14 +21,14 @@ export class BaseAuthModule {
         JwtStrategy,
       ],
       imports: [
-        MongooseModule,
+        UserModule,
         PassportModule,
         JwtModule.register({
           secret: jwtSecret,
           signOptions: { expiresIn },
         }),
       ],
-      exports: [BaseAuthService, JwtStrategy, MongooseModule],
+      exports: [BaseAuthService, JwtStrategy, UserModule],
     };
   }
 }
