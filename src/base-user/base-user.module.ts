@@ -23,7 +23,7 @@ export class BaseUserModule {
         ]),
       ],
       controllers: [BaseUserController],
-      exports: [BaseUserService],
+      exports: [BaseUserService, MongooseModule],
     };
   }
 }

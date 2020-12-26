@@ -27,7 +27,7 @@ let BaseUserModule = BaseUserModule_1 = class BaseUserModule {
                 ]),
             ],
             controllers: [base_user_controller_1.BaseUserController],
-            exports: [base_user_service_1.BaseUserService],
+            exports: [base_user_service_1.BaseUserService, mongoose_1.MongooseModule],
         };
     }
 };
