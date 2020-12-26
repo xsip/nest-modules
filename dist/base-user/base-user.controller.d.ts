@@ -3,6 +3,6 @@ import { BaseUserModel } from "./models";
 export declare class BaseUserController<T = BaseUserModel> {
     userService: BaseUserService<T>;
     constructor(userService: BaseUserService<T>);
-    private createUser;
+    createUser(user: T): Promise<T>;
 }
 //# sourceMappingURL=base-user.controller.d.ts.map
