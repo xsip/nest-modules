@@ -13,7 +13,7 @@ export class BaseUserService<T = BaseUserModel> extends ModelRepo<T> {
     super(userModel);
   }
 
-  async createUser(user: T): Promise<T> {
+  async createUser(user: T): Promise<T & Document> {
     return this.create({
       ...(user as any),
       password: this.hashPassword(user['password']),

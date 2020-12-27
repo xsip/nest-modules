@@ -12,8 +12,9 @@ export class BaseAuthService {
   async validateUser(email: string, pass: string): Promise<any> {
     const user = await this.userService.findByEmail(email);
     if (this.userService.comparePassword(pass, user.password)) {
-      const { password, ...result } = user;
-      return result;
+      // const { password, ...result } = user;
+      delete user.password;
+      return user.toJSON();
     }
     return null;
   }
