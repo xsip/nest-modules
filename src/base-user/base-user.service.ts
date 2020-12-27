@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Document, Model } from 'mongoose';
+import { Document, Model, Schema } from 'mongoose';
 import { BaseUserModel } from './models/base-user.model';
 import * as bcrypt from 'bcrypt';
 import { ModelRepo } from '../core/services/model.repo';
@@ -18,6 +18,10 @@ export class BaseUserService<T = BaseUserModel> extends ModelRepo<T> {
       ...(user as any),
       password: this.hashPassword(user['password']),
     });
+  }
+
+  async updateUser(user: T & Document): Promise<T & Document> {
+    return this.updateOne(user._id, user);
   }
 
   public async findByEmail(email: string) {
