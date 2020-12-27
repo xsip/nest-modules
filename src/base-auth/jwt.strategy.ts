@@ -5,6 +5,8 @@ import {
   Inject,
   Injectable,
 } from '@nestjs/common';
+import { BaseUserModel, BaseUserService } from '../base-user';
+import { Document } from 'mongoose';
 
 export const AuthUser = createParamDecorator((data, req) => {
   return req.args[0].user;
@@ -12,7 +14,10 @@ export const AuthUser = createParamDecorator((data, req) => {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(@Inject('JwtSecret') jwtSecret: string) {
+  constructor(
+    @Inject('JwtSecret') jwtSecret: string,
+    @Inject('UserService') public userService: BaseUserService,
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -20,7 +25,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any) {
-    return payload;
+  async validate(payload: BaseUserModel & Document) {
+    const foundUser = this.userService.findOneById(payload._id);
+    return foundUser;
   }
 }
