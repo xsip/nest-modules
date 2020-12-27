@@ -2,6 +2,11 @@ import { Prop, Schema } from '@nestjs/mongoose';
 import { Document, SchemaDefinition } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
+export enum BaseUserRole {
+  ADMIN = 'Admin',
+  USER = 'User',
+}
+
 export type BaseUserDocument = BaseUserModel & Document;
 export interface CreateUserDto {
   name: string;
@@ -33,4 +38,8 @@ export class BaseUserModel {
   @ApiProperty()
   @Prop()
   updatedAt?: Date;
+
+  @ApiProperty()
+  @Prop()
+  role?: BaseUserRole;
 }
