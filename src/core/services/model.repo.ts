@@ -7,6 +7,10 @@ export class ModelRepo<T> {
     return this.model.findOne(query as any).exec();
   }
 
+  async findOneById(id: ObjectId): Promise<T> {
+    return this.model.findById(id).exec();
+  }
+
   async findMany(query: FilterQuery<T>): Promise<T[]> {
     return this.model.find(query as any).exec();
   }
