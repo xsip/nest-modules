@@ -26,6 +26,10 @@
     "rxjs": "^6.6.3"
   },
   "devDependencies": {
-    "@types/passport-jwt": "^3.0.3"
+    "@types/passport-jwt": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "eslint": "^7.16.0",
+    "typescript": "^4.1.3"
   }
 }

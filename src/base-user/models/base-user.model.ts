@@ -1,6 +1,6 @@
-import { Prop, Schema } from "@nestjs/mongoose";
-import { Document } from "mongoose";
-import { ApiProperty } from "@nestjs/swagger";
+import { Prop, Schema } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 
 export type BaseUserDocument = BaseUserModel & Document;
 export interface CreateUserDto {
@@ -10,7 +10,7 @@ export interface CreateUserDto {
 }
 @Schema()
 export class BaseUserModel {
-  @ApiProperty()
+  @ApiProperty() 
   @Prop()
   name: string;
   @ApiProperty()
