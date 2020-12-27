@@ -12,11 +12,25 @@ export interface CreateUserDto {
 export class BaseUserModel {
   @ApiProperty()
   @Prop()
-  name: string;
+  firstName: string;
+
+  @ApiProperty()
+  @Prop()
+  lastName: string;
+
   @ApiProperty()
   @Prop()
   email: string;
+
   @ApiProperty()
   @Prop()
   password: string;
+
+  @ApiProperty()
+  @Prop()
+  createdAt: Date;
+
+  @ApiProperty()
+  @Prop()
+  updatedAt: Date;
 }
