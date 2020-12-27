@@ -4,13 +4,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 
-@Module({}) 
+@Module({})
 export class BaseAuthModule {
   static register(
     userService: any,
     UserModule: any,
     jwtSecret: string,
-    expiresIn = '10h'
+    expiresIn = '10h',
   ): DynamicModule {
     return {
       module: BaseAuthModule,

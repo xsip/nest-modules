@@ -7,8 +7,8 @@ import { BaseUserModel } from './models/base-user.model';
 export class BaseUserModule {
   static register(
     userModelClass: unknown = BaseUserModel,
-    userCollectionName = 'user'
-  ): DynamicModule { 
+    userCollectionName = 'user',
+  ): DynamicModule {
     return {
       module: BaseUserModule,
       providers: [BaseUserService],
@@ -16,7 +16,9 @@ export class BaseUserModule {
         MongooseModule.forFeature([
           {
             name: userCollectionName,
-            schema: SchemaFactory.createForClass(userModelClass as Type),
+            schema: SchemaFactory.createForClass(
+              userModelClass as Type,
+            ),
           },
         ]),
       ],
