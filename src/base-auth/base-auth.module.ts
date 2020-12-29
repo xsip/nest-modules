@@ -10,6 +10,7 @@ export class BaseAuthModule {
     userService: any,
     UserModule: any,
     jwtSecret: string,
+    doubleCheck?: boolean,
     expiresIn = '10h',
   ): DynamicModule {
     return {
@@ -18,6 +19,7 @@ export class BaseAuthModule {
         BaseAuthService,
         { provide: 'UserService', useClass: userService },
         { provide: 'JwtSecret', useValue: jwtSecret },
+        { provide: 'DoubleCheck', useValue: doubleCheck },
         JwtStrategy,
       ],
       imports: [

@@ -16,6 +16,7 @@ export const AuthUser = createParamDecorator((data, req) => {
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @Inject('JwtSecret') jwtSecret: string,
+    @Inject('DoubleCheck') private doubleCheck: string,
     @Inject('UserService') public userService: BaseUserService,
   ) {
     super({
@@ -26,7 +27,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: BaseUserModel & Document) {
-    const foundUser = await this.userService.findOneById(payload._id);
-    return foundUser;
+    if (this.doubleCheck) {
+      const foundUser = await this.userService.findOneById(
+        payload._id,
+      );
+      return foundUser;
+    }
+    return payload;
   }
 }
