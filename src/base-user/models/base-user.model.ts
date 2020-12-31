@@ -1,6 +1,7 @@
 import { Prop, Schema } from '@nestjs/mongoose';
-import { Document, SchemaDefinition } from 'mongoose';
+import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
+import { enumForSwagger } from '../../core/base-helpers';
 
 export enum BaseUserRole {
   ADMIN = 'Admin',
@@ -8,11 +9,13 @@ export enum BaseUserRole {
 }
 
 export type BaseUserDocument = BaseUserModel & Document;
+
 export interface CreateUserDto {
   name: string;
   email: string;
   password: string;
 }
+
 @Schema({ timestamps: true })
 export class BaseUserModel {
   @ApiProperty()
@@ -39,7 +42,7 @@ export class BaseUserModel {
   @Prop()
   updatedAt?: Date;
 
-  @ApiProperty()
+  @ApiProperty(enumForSwagger(BaseUserRole, 'BaseUserRole'))
   @Prop()
   role?: BaseUserRole;
 }
