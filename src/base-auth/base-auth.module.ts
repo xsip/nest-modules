@@ -23,13 +23,14 @@ export class BaseAuthModule {
         JwtStrategy,
       ],
       imports: [
+        UserModule,
         PassportModule,
         JwtModule.register({
           secret: jwtSecret,
           signOptions: { expiresIn },
         }),
       ],
-      exports: [BaseAuthService, JwtStrategy],
+      exports: [BaseAuthService, JwtStrategy, UserModule],
     };
   }
 }
