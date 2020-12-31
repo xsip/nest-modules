@@ -3,10 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Document, Model, Schema } from 'mongoose';
 import { BaseUserModel } from './models/base-user.model';
 import * as bcrypt from 'bcrypt';
-import { ModelRepo } from '../core/services/model.repo';
+import { BaseModelRepo } from '../core/base-services/base-model.repo';
 
 @Injectable()
-export class BaseUserService<T = BaseUserModel> extends ModelRepo<T> {
+export class BaseUserService<T = BaseUserModel> extends BaseModelRepo<T> {
   constructor(
     @InjectModel('user') public userModel: Model<T & Document>,
   ) {

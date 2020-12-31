@@ -1,6 +1,6 @@
 import { Document, FilterQuery, Model, ObjectId } from 'mongoose';
 
-export class ModelRepo<T> {
+export class BaseModelRepo<T> {
   constructor(public model: Model<T & Document>) {}
 
   async findOne(

@@ -11,17 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseAuthService = void 0;
 const common_1 = require("@nestjs/common");
@@ -35,8 +24,9 @@ let BaseAuthService = class BaseAuthService {
     async validateUser(email, pass) {
         const user = await this.userService.findByEmail(email);
         if (this.userService.comparePassword(pass, user.password)) {
-            const { password } = user, result = __rest(user, ["password"]);
-            return result;
+            // const { password, ...result } = user;
+            delete user.password;
+            return user.toJSON();
         }
         return null;
     }
@@ -48,7 +38,7 @@ let BaseAuthService = class BaseAuthService {
 };
 BaseAuthService = __decorate([
     common_1.Injectable(),
-    __param(0, common_1.Inject("UserService")),
+    __param(0, common_1.Inject('UserService')),
     __metadata("design:paramtypes", [base_user_1.BaseUserService,
         jwt_1.JwtService])
 ], BaseAuthService);

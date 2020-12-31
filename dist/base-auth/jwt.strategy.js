@@ -12,26 +12,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JwtStrategy = void 0;
+exports.JwtStrategy = exports.AuthUser = void 0;
 const passport_jwt_1 = require("passport-jwt");
 const passport_1 = require("@nestjs/passport");
 const common_1 = require("@nestjs/common");
+const base_user_1 = require("../base-user");
+exports.AuthUser = common_1.createParamDecorator((data, req) => {
+    return req.args[0].user;
+});
 let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
-    constructor(jwtSecret) {
+    constructor(jwtSecret, doubleCheck, userService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
             secretOrKey: jwtSecret,
         });
+        this.doubleCheck = doubleCheck;
+        this.userService = userService;
     }
     async validate(payload) {
-        return { userId: payload.sub, username: payload.username };
+        if (this.doubleCheck) {
+            const foundUser = await this.userService.findOneById(payload._id);
+            return foundUser;
+        }
+        return payload;
     }
 };
 JwtStrategy = __decorate([
     common_1.Injectable(),
-    __param(0, common_1.Inject("JwtSecret")),
-    __metadata("design:paramtypes", [String])
+    __param(0, common_1.Inject('JwtSecret')),
+    __param(1, common_1.Inject('DoubleCheck')),
+    __param(2, common_1.Inject('UserService')),
+    __metadata("design:paramtypes", [String, String, base_user_1.BaseUserService])
 ], JwtStrategy);
 exports.JwtStrategy = JwtStrategy;
 //# sourceMappingURL=jwt.strategy.js.map

@@ -13,14 +13,14 @@ const base_user_service_1 = require("./base-user.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const base_user_model_1 = require("./models/base-user.model");
 let BaseUserModule = BaseUserModule_1 = class BaseUserModule {
-    static register(userModelClass = base_user_model_1.BaseUserModel, userCollectionName = "user") {
+    static register(userModelClass = base_user_model_1.BaseUserModel, userCollectionName = 'user') {
         return {
             module: BaseUserModule_1,
             providers: [base_user_service_1.BaseUserService],
             imports: [
                 mongoose_1.MongooseModule.forFeature([
                     {
-                        name: "user",
+                        name: userCollectionName,
                         schema: mongoose_1.SchemaFactory.createForClass(userModelClass),
                     },
                 ]),

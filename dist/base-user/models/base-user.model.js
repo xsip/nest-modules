@@ -9,16 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseUserModel = void 0;
+exports.BaseUserModel = exports.BaseUserRole = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const swagger_1 = require("@nestjs/swagger");
+var BaseUserRole;
+(function (BaseUserRole) {
+    BaseUserRole["ADMIN"] = "Admin";
+    BaseUserRole["USER"] = "User";
+})(BaseUserRole = exports.BaseUserRole || (exports.BaseUserRole = {}));
 let BaseUserModel = class BaseUserModel {
 };
 __decorate([
     swagger_1.ApiProperty(),
     mongoose_1.Prop(),
     __metadata("design:type", String)
-], BaseUserModel.prototype, "name", void 0);
+], BaseUserModel.prototype, "firstName", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", String)
+], BaseUserModel.prototype, "lastName", void 0);
 __decorate([
     swagger_1.ApiProperty(),
     mongoose_1.Prop(),
@@ -29,8 +39,23 @@ __decorate([
     mongoose_1.Prop(),
     __metadata("design:type", String)
 ], BaseUserModel.prototype, "password", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", Date)
+], BaseUserModel.prototype, "createdAt", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", Date)
+], BaseUserModel.prototype, "updatedAt", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", String)
+], BaseUserModel.prototype, "role", void 0);
 BaseUserModel = __decorate([
-    mongoose_1.Schema()
+    mongoose_1.Schema({ timestamps: true })
 ], BaseUserModel);
 exports.BaseUserModel = BaseUserModel;
 //# sourceMappingURL=base-user.model.js.map

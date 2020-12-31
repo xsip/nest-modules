@@ -36,16 +36,21 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const bcrypt = __importStar(require("bcrypt"));
-let BaseUserService = class BaseUserService {
+const model_repo_1 = require("../core/services/model.repo");
+let BaseUserService = class BaseUserService extends model_repo_1.ModelRepo {
     constructor(userModel) {
+        super(userModel);
         this.userModel = userModel;
     }
     async createUser(user) {
-        return this.userModel.create(Object.assign(Object.assign({}, user), { password: this.hashPassword(user["password"]) }));
+        return this.create(Object.assign(Object.assign({}, user), { password: this.hashPassword(user['password']) }));
+    }
+    async updateUser(user) {
+        return this.updateOne(user._id, user);
     }
     async findByEmail(email) {
         try {
-            return await this.userModel.findOne({ email: email });
+            return await this.findOne({ email: email });
         }
         catch (e) {
             throw new Error(`Couldn't find user with email "${email}"`);
@@ -60,7 +65,7 @@ let BaseUserService = class BaseUserService {
 };
 BaseUserService = __decorate([
     common_1.Injectable(),
-    __param(0, mongoose_1.InjectModel("user")),
+    __param(0, mongoose_1.InjectModel('user')),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], BaseUserService);
 exports.BaseUserService = BaseUserService;
