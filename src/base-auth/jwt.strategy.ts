@@ -2,14 +2,27 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import {
   createParamDecorator,
+  HttpException,
+  HttpStatus,
   Inject,
   Injectable,
 } from '@nestjs/common';
-import { BaseUserModel, BaseUserService } from '../base-user';
+import {
+  BaseUserModel,
+  BaseUserRole,
+  BaseUserService,
+} from '../base-user';
 import { Document } from 'mongoose';
 
 export const AuthUser = createParamDecorator((data, req) => {
   return req.args[0].user;
+});
+export const AdminAuthUser = createParamDecorator((data, req) => {
+  const user: BaseUserModel = req.args[0].user;
+  if (user.role !== BaseUserRole.ADMIN) {
+    throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+  }
+  return user;
 });
 
 @Injectable()
