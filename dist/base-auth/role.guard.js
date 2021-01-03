@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RoleGuardService = exports.RoleGuard = void 0;
 const common_1 = require("@nestjs/common");
@@ -35,7 +34,7 @@ let RoleGuardService = class RoleGuardService {
 };
 RoleGuardService = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [typeof (_a = typeof core_1.Reflector !== "undefined" && core_1.Reflector) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [core_1.Reflector])
 ], RoleGuardService);
 exports.RoleGuardService = RoleGuardService;
 //# sourceMappingURL=role.guard.js.map
