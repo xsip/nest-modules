@@ -1,0 +1,1 @@
+{"version":3,"file":"base-auth.module.d.ts","sourceRoot":"","sources":["../../src/base-auth/base-auth.module.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAU,MAAM,gBAAgB,CAAC;AAUvD,qBACa,cAAc;IACzB,MAAM,CAAC,QAAQ,CACb,WAAW,EAAE,GAAG,EAChB,UAAU,EAAE,GAAG,EACf,SAAS,EAAE,MAAM,EACjB,WAAW,CAAC,EAAE,OAAO,EACrB,SAAS,SAAQ,GAChB,aAAa;CAyBjB"}
