@@ -4,6 +4,8 @@ import {
   Injectable,
   SetMetadata,
 } from '@nestjs/common';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Reflector } from '@nestjs/core';
 import { BaseUserModel, BaseUserRole } from '../base-user/models';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
