@@ -3,6 +3,8 @@ import { BaseAuthService } from './base-auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
+import { RoleGuardService } from './role.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({})
 export class BaseAuthModule {
@@ -21,6 +23,10 @@ export class BaseAuthModule {
         { provide: 'JwtSecret', useValue: jwtSecret },
         { provide: 'DoubleCheck', useValue: doubleCheck },
         JwtStrategy,
+        {
+          provide: APP_GUARD,
+          useClass: RoleGuardService,
+        },
       ],
       imports: [
         UserModule,

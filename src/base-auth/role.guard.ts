@@ -6,10 +6,11 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { BaseUserModel, BaseUserRole } from '../base-user/models';
-export const Role = (role: BaseUserRole) => SetMetadata('role', role);
+export const RoleGuard = (role: BaseUserRole) =>
+  SetMetadata('role', role);
 
 @Injectable()
-export class RoleGuard implements CanActivate {
+export class RoleGuardService implements CanActivate {
   constructor(private readonly reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
