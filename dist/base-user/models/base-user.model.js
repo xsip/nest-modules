@@ -43,6 +43,26 @@ __decorate([
 __decorate([
     swagger_1.ApiProperty(),
     mongoose_1.Prop(),
+    __metadata("design:type", String)
+], BaseUserModel.prototype, "verificationCode", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", Boolean)
+], BaseUserModel.prototype, "isVerified", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", Boolean)
+], BaseUserModel.prototype, "verificationEmailSent", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
+    __metadata("design:type", Date)
+], BaseUserModel.prototype, "verificationDate", void 0);
+__decorate([
+    swagger_1.ApiProperty(),
+    mongoose_1.Prop(),
     __metadata("design:type", Date)
 ], BaseUserModel.prototype, "createdAt", void 0);
 __decorate([

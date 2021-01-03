@@ -35,15 +35,21 @@ exports.BaseUserService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const base_user_model_1 = require("./models/base-user.model");
 const bcrypt = __importStar(require("bcrypt"));
 const base_model_repo_1 = require("../core/base-services/base-model.repo");
+const uuid_1 = require("uuid");
 let BaseUserService = class BaseUserService extends base_model_repo_1.BaseModelRepo {
     constructor(userModel) {
         super(userModel);
         this.userModel = userModel;
     }
     async createUser(user) {
-        return this.create(Object.assign(Object.assign({}, user), { password: this.hashPassword(user['password']) }));
+        const userCopy = user;
+        userCopy.verificationCode = uuid_1.v4();
+        userCopy.verificationEmailSent = false;
+        userCopy.role = base_user_model_1.BaseUserRole.USER;
+        return this.create(Object.assign(Object.assign({}, userCopy), { password: this.hashPassword(user['password']) }));
     }
     async updateUser(user) {
         return this.updateOne(user._id, user);

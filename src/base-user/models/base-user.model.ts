@@ -36,6 +36,22 @@ export class BaseUserModel {
 
   @ApiProperty()
   @Prop()
+  verificationCode?: string;
+
+  @ApiProperty()
+  @Prop()
+  isVerified?: boolean;
+
+  @ApiProperty()
+  @Prop()
+  verificationEmailSent?: boolean;
+
+  @ApiProperty()
+  @Prop()
+  verificationDate?: Date;
+
+  @ApiProperty()
+  @Prop()
   createdAt?: Date;
 
   @ApiProperty()

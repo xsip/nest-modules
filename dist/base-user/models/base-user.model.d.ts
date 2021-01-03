@@ -14,6 +14,10 @@ export declare class BaseUserModel {
     lastName?: string;
     email?: string;
     password?: string;
+    verificationCode?: string;
+    isVerified?: boolean;
+    verificationEmailSent?: boolean;
+    verificationDate?: Date;
     createdAt?: Date;
     updatedAt?: Date;
     role?: BaseUserRole;
