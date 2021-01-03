@@ -40,9 +40,8 @@ let RoleGuardService = class RoleGuardService {
             return false;
         }
         const user = this.jwtService.decode(jwt);
-        // const user: BaseUserModel = request.args[0].user;
-        console.log(user);
-        return user && user.role && user.role === role;
+        const foundUser = await this.userService.findOneById(user._id);
+        return foundUser && foundUser.role && foundUser.role === role;
     }
 };
 RoleGuardService = __decorate([

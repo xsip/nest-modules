@@ -38,11 +38,12 @@ export class RoleGuardService implements CanActivate {
     if (!jwt) {
       return false;
     }
-    const user: BaseUserModel = this.jwtService.decode(
+    const user: BaseUserModel & Document = this.jwtService.decode(
       jwt,
     ) as BaseUserModel & Document;
-    // const user: BaseUserModel = request.args[0].user;
-    console.log(user);
-    return user && user.role && user.role === role;
+    const foundUser: BaseUserModel &
+      Document = await this.userService.findOneById(user._id);
+
+    return foundUser && foundUser.role && foundUser.role === role;
   }
 }
