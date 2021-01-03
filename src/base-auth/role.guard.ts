@@ -34,7 +34,7 @@ export class RoleGuardService implements CanActivate {
       return true;
     }
     const request = context.switchToHttp().getRequest();
-    const jwt = request.headers.authorization.replace('Bearer ', '');
+    const jwt = request.headers.authorization?.replace('Bearer ', '');
     if (!jwt) {
       return false;
     }

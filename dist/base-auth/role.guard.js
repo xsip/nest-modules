@@ -30,12 +30,13 @@ let RoleGuardService = class RoleGuardService {
         this.jwtService = jwtService;
     }
     async canActivate(context) {
+        var _a;
         const role = this.reflector.get('role', context.getHandler());
         if (!role) {
             return true;
         }
         const request = context.switchToHttp().getRequest();
-        const jwt = request.headers.authorization.replace('Bearer ', '');
+        const jwt = (_a = request.headers.authorization) === null || _a === void 0 ? void 0 : _a.replace('Bearer ', '');
         if (!jwt) {
             return false;
         }
