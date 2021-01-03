@@ -23,6 +23,9 @@ let BaseAuthService = class BaseAuthService {
     }
     async validateUser(email, pass) {
         const user = await this.userService.findByEmail(email);
+        if (!user) {
+            return null;
+        }
         if (this.userService.comparePassword(pass, user.password)) {
             // const { password, ...result } = user;
             delete user.password;

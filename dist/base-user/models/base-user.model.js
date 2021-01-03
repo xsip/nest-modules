@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseUserModel = exports.BaseUserRole = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const swagger_1 = require("@nestjs/swagger");
+const base_helpers_1 = require("../../core/base-helpers");
 var BaseUserRole;
 (function (BaseUserRole) {
     BaseUserRole["ADMIN"] = "Admin";
@@ -50,7 +51,7 @@ __decorate([
     __metadata("design:type", Date)
 ], BaseUserModel.prototype, "updatedAt", void 0);
 __decorate([
-    swagger_1.ApiProperty(),
+    swagger_1.ApiProperty(base_helpers_1.enumForSwagger(BaseUserRole, 'BaseUserRole')),
     mongoose_1.Prop(),
     __metadata("design:type", String)
 ], BaseUserModel.prototype, "role", void 0);

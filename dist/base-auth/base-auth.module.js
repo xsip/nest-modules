@@ -13,6 +13,8 @@ const base_auth_service_1 = require("./base-auth.service");
 const jwt_1 = require("@nestjs/jwt");
 const passport_1 = require("@nestjs/passport");
 const jwt_strategy_1 = require("./jwt.strategy");
+const role_guard_1 = require("./role.guard");
+const core_1 = require("@nestjs/core");
 let BaseAuthModule = BaseAuthModule_1 = class BaseAuthModule {
     static register(userService, UserModule, jwtSecret, doubleCheck, expiresIn = '10h') {
         return {
@@ -23,6 +25,10 @@ let BaseAuthModule = BaseAuthModule_1 = class BaseAuthModule {
                 { provide: 'JwtSecret', useValue: jwtSecret },
                 { provide: 'DoubleCheck', useValue: doubleCheck },
                 jwt_strategy_1.JwtStrategy,
+                {
+                    provide: core_1.APP_GUARD,
+                    useClass: role_guard_1.RoleGuardService,
+                },
             ],
             imports: [
                 UserModule,

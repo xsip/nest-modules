@@ -1,7 +1,7 @@
 import { Document, Model } from 'mongoose';
 import { BaseUserModel } from './models/base-user.model';
-import { ModelRepo } from '../core/services/model.repo';
-export declare class BaseUserService<T = BaseUserModel> extends ModelRepo<T> {
+import { BaseModelRepo } from '../core/base-services/base-model.repo';
+export declare class BaseUserService<T = BaseUserModel> extends BaseModelRepo<T> {
     userModel: Model<T & Document>;
     constructor(userModel: Model<T & Document>);
     createUser(user: T): Promise<T & Document>;

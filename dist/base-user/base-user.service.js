@@ -36,8 +36,8 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const bcrypt = __importStar(require("bcrypt"));
-const model_repo_1 = require("../core/services/model.repo");
-let BaseUserService = class BaseUserService extends model_repo_1.ModelRepo {
+const base_model_repo_1 = require("../core/base-services/base-model.repo");
+let BaseUserService = class BaseUserService extends base_model_repo_1.BaseModelRepo {
     constructor(userModel) {
         super(userModel);
         this.userModel = userModel;

@@ -6,6 +6,8 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { BaseUserModel, BaseUserRole } from '../base-user/models';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const RoleGuard = (role: BaseUserRole) =>
   SetMetadata('role', role);
 

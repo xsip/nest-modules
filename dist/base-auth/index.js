@@ -14,4 +14,5 @@ __exportStar(require("./base-auth.module"), exports);
 __exportStar(require("./base-auth.service"), exports);
 __exportStar(require("./jwt.strategy"), exports);
 __exportStar(require("./jwt-auth.guard"), exports);
+__exportStar(require("./role.guard"), exports);
 //# sourceMappingURL=index.js.map
