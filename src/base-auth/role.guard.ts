@@ -1,6 +1,7 @@
 import {
   CanActivate,
   ExecutionContext,
+  Inject,
   Injectable,
   SetMetadata,
 } from '@nestjs/common';
@@ -8,16 +9,23 @@ import {
 // @ts-ignore
 import { Reflector } from '@nestjs/core';
 import { BaseUserModel, BaseUserRole } from '../base-user/models';
+import { BaseUserService } from '../base-user';
+import { JwtService } from '@nestjs/jwt';
+import { Document } from 'mongoose';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-export const RoleGuard = (role: BaseUserRole) =>
+export const RoleGuard = (role: BaseUserRole, doubleCheck = true) =>
   SetMetadata('role', role);
 
 @Injectable()
 export class RoleGuardService implements CanActivate {
-  constructor(private readonly reflector: Reflector) {}
+  constructor(
+    private readonly reflector: Reflector,
+    @Inject('UserService') private userService: BaseUserService,
+    private jwtService: JwtService,
+  ) {}
 
-  canActivate(context: ExecutionContext): boolean {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const role = this.reflector.get<BaseUserRole>(
       'role',
       context.getHandler(),
@@ -26,7 +34,15 @@ export class RoleGuardService implements CanActivate {
       return true;
     }
     const request = context.switchToHttp().getRequest();
-    const user: BaseUserModel = request.args[0].user;
+    const jwt = request.headers.authorization.replace('Bearer ', '');
+    if (!jwt) {
+      return false;
+    }
+    const user: BaseUserModel = this.jwtService.decode(
+      jwt,
+    ) as BaseUserModel & Document;
+    // const user: BaseUserModel = request.args[0].user;
+    console.log(user);
     return user && user.role && user.role === role;
   }
 }
