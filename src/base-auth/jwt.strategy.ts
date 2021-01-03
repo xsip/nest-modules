@@ -17,7 +17,10 @@ import { Document } from 'mongoose';
 export const AuthUser = createParamDecorator((data, req) => {
   return req.args[0].user;
 });
-export const AdminAuthUser = createParamDecorator((data, req) => {
+export const AdminAuthUser = createParamDecorator(function (
+  data,
+  req,
+) {
   const user: BaseUserModel = req.args[0].user;
   if (user.role !== BaseUserRole.ADMIN) {
     throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
