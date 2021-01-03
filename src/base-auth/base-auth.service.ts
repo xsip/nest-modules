@@ -17,7 +17,10 @@ export class BaseAuthService {
     if (!user) {
       return null;
     }
-    if (this.userService.comparePassword(pass, user.password)) {
+    if (
+      this.userService.comparePassword(pass, user.password) &&
+      user.isVerified
+    ) {
       // const { password, ...result } = user;
       delete user.password;
       return user.toJSON();
